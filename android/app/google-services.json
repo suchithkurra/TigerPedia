@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "982615576459",
+    "project_id": "tigers-of-india",
+    "storage_bucket": "tigers-of-india.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982615576459:android:a60235054d99a13f31e98e",
+        "android_client_info": {
+          "package_name": "com.project.tigerapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUBHqSKkqS7cyZgvYAkuPXisW-66g4SbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
