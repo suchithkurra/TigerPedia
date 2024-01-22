@@ -100,7 +100,7 @@ class _HomePageState extends State<bottom_nav> {
               ),
             ),
             ListTile(
-              title: Text('Drawer Item 1'),
+              title: Text('Profile'),
               onTap: () {
                 // Implement your drawer item functionality here
               },
