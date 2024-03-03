@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBUBHqSKkqS7cyZgvYAkuPXisW-66g4SbI',
-    appId: '1:982615576459:android:a60235054d99a13f31e98e',
-    messagingSenderId: '982615576459',
-    projectId: 'tigers-of-india',
-    storageBucket: 'tigers-of-india.appspot.com',
+    apiKey: 'AIzaSyDeg_zYqEnks0bhzExdo_xKzVfBZxkxzME',
+    appId: '1:455093432382:android:13371bcb594420dbd0616f',
+    messagingSenderId: '455093432382',
+    projectId: 'tigerpedia-1b988',
+    storageBucket: 'tigerpedia-1b988.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD1LOgHfit2slpyIHpkmcvXLuXazyhIuM0',
-    appId: '1:982615576459:ios:528c92e4b608be3d31e98e',
-    messagingSenderId: '982615576459',
-    projectId: 'tigers-of-india',
-    storageBucket: 'tigers-of-india.appspot.com',
+    apiKey: 'AIzaSyA2PjRXPZIv_B-5exE0ZPgW-7yoVPDZmp0',
+    appId: '1:455093432382:ios:d0e4bf9649895a4dd0616f',
+    messagingSenderId: '455093432382',
+    projectId: 'tigerpedia-1b988',
+    storageBucket: 'tigerpedia-1b988.appspot.com',
     iosBundleId: 'com.project.tigerapp',
   );
 }

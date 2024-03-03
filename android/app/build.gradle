@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
 }
 
 def localProperties = new Properties()
@@ -51,7 +52,14 @@ android {
         versionName flutterVersionName
         multiDexEnabled true
     }
-
+    signingConfigs {
+        release {
+            keyAlias 'singing_key'
+            keyPassword 'Hi#112128'
+            storeFile file('android/signing_key.keystore')
+            storePassword 'Hi#112128'
+        }
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
@@ -65,4 +73,7 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation 'com.google.firebase:firebase-analytics'
+}

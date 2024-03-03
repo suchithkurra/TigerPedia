@@ -1,26 +1,51 @@
 {
   "project_info": {
-    "project_number": "982615576459",
-    "project_id": "tigers-of-india",
-    "storage_bucket": "tigers-of-india.appspot.com"
+    "project_number": "455093432382",
+    "project_id": "tigerpedia-1b988",
+    "storage_bucket": "tigerpedia-1b988.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:982615576459:android:a60235054d99a13f31e98e",
+        "mobilesdk_app_id": "1:455093432382:android:13371bcb594420dbd0616f",
         "android_client_info": {
           "package_name": "com.project.tigerapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "455093432382-eveipagq0adt7ep35e9aamv3b7oce5tv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.tigerapp",
+            "certificate_hash": "ae5a02c7f647237772e246a8fc8bbb7ccd216a74"
+          }
+        },
+        {
+          "client_id": "455093432382-5tsll76mehqoalqir4g71p06jivjgvb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBUBHqSKkqS7cyZgvYAkuPXisW-66g4SbI"
+          "current_key": "AIzaSyDeg_zYqEnks0bhzExdo_xKzVfBZxkxzME"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455093432382-099ijb1ts6ji9uk007qdstjbo601qn1h.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "455093432382-56udmnldmgj51u41ugafd57e720qgeh3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.project.tigerapp"
+              }
+            }
+          ]
         }
       }
     }

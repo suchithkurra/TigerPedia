@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tigerapp/screens/home_screen.dart';
+import 'package:tigerapp/screens/login_screen.dart';
 import 'package:tigerapp/screens/search_page.dart';
 import 'package:tigerapp/screens/reserve_info.dart';
 import 'package:tigerapp/screens/profile_screen.dart';
@@ -8,9 +10,16 @@ import 'package:tigerapp/screens/tiger_info_screen.dart';
 import 'package:tigerapp/Models/tiger_info.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp();
+    runApp(MyApp());
+  } catch (e) {
+    print('Error initializing Firebase: $e');
+  }
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const bottom_nav(),
+      home: LoginPage(),
     );
   }
 }
@@ -37,7 +46,7 @@ class _HomePageState extends State<bottom_nav> {
   final List<Widget> _pages = [
     homepage(),
     SearchPage(),
-    reserveinfopage(),
+    ReserveInfoPage(),
     profilepage(),
   ];
 
