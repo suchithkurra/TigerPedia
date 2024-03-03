@@ -3,6 +3,10 @@ import 'package:tigerapp/screens/home_screen.dart';
 import 'package:tigerapp/screens/search_page.dart';
 import 'package:tigerapp/screens/reserve_info.dart';
 import 'package:tigerapp/screens/profile_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:tigerapp/screens/tiger_info_screen.dart';
+import 'package:tigerapp/Models/tiger_info.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +36,7 @@ class _HomePageState extends State<bottom_nav> {
 
   final List<Widget> _pages = [
     homepage(),
-    searchpage(),
+    SearchPage(),
     reserveinfopage(),
     profilepage(),
   ];
@@ -40,81 +44,80 @@ class _HomePageState extends State<bottom_nav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tigers of India'),
-        actions: [
-          IconButton(
 
-              onPressed: (){
-                Scaffold.of(context).openEndDrawer();
-              }, icon: Icon(Icons.menu))
-        ],
-      ),
 
-      body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: Colors.black,
-            icon: const Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.info),
-            label: 'Tiger Reserve Info',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-      ),
 
-      endDrawer: Drawer(
 
-        child: ListView(
+        body: _pages[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
 
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+          backgroundColor: Colors.black87,
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              icon: SvgPicture.asset('assets/svg/Vectorhome-icon.svg',),
+              activeIcon: SvgPicture.asset(
+                'assets/svg/Vectorhome-icon.svg', // Replace with the path to your selected icon
+                  color: Color(0xFFF36523), // Customize the color for the selected state
               ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
+              label: 'Home',
+
+            ),
+
+            BottomNavigationBarItem(
+             backgroundColor: Colors.white,
+              icon: SvgPicture.asset('assets/svg/search-normalsearch-icon.svg',),
+              activeIcon: SvgPicture.asset(
+                'assets/svg/search-normalsearch-icon.svg', // Replace with the path to your selected icon
+                color: Color(0xFFF36523), // Customize the color for the selected state
               ),
+              label: 'Search',
             ),
-            ListTile(
-              title: Text('Profile'),
-              onTap: () {
-                // Implement your drawer item functionality here
-              },
+            BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              icon: SvgPicture.asset('assets/svg/reserve-icon.svg',),
+              activeIcon: SvgPicture.asset(
+                'assets/svg/reserve-icon.svg', // Replace with the path to your selected icon
+                color: Color(0xFFF36523), // Customize the color for the selected state
+              ),
+
+              label: 'Reserves',
+
+
             ),
-            ListTile(
-              title: Text('Drawer Item 2'),
-              onTap: () {
-                // Implement your drawer item functionality here
-              },
+            BottomNavigationBarItem(
+              backgroundColor: Colors.white,
+              icon: SvgPicture.asset('assets/svg/profile.svg',),
+              activeIcon: SvgPicture.asset(
+                'assets/svg/profile.svg', // Replace with the path to your selected icon
+                color: Color(0xFFF36523), // Customize the color for the selected state
+              ),
+              label: 'Account',
             ),
-            // Add more ListTile widgets for additional items
           ],
+          selectedItemColor: Color(0xFFF36523), // Set the color for the selected item's label
+          unselectedItemColor: Color(0xFFA9A9A9),
+          selectedLabelStyle: GoogleFonts.poppins(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            // color: Colors.blue, // Change the color of the selected label text
+          ),
+          unselectedLabelStyle: GoogleFonts.poppins(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            // color: Colors.black, // Change the color of the unselected label text
+          ),
+
+
         ),
-      )
+
+
 
     );
 

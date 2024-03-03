@@ -35,6 +35,10 @@ dependencies:
   firebase_auth: ^3.11.2
   cloud_firestore: ^3.4.0
   http: ^1.2.0
+  carousel_slider: ^4.2.1
+  google_fonts:
+  blur: ^3.0.0
+  flutter_svg: ^0.22.0
 
   # flutter_google_place_picker: "^0.0.1"
   # location: "^1.2.0"
@@ -67,9 +71,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-  - assets/images/
-  - images/svg/
+  assets:
+    - assets/images/
+    - assets/svg/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
