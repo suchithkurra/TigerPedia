@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:tigerapp/screens/bottom_nav.dart';
 import 'package:tigerapp/screens/home_screen.dart';
 import 'package:tigerapp/screens/login_screen.dart';
 import 'package:tigerapp/screens/search_page.dart';
@@ -28,107 +30,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: bottom_nav(),
     );
   }
 }
 
-class bottom_nav extends StatefulWidget {
-  const bottom_nav({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<bottom_nav> {
-  int _currentIndex = 0;
-
-  final List<Widget> _pages = [
-    homepage(),
-    SearchPage(),
-    ReserveInfoPage(),
-    profilepage(),
-  ];
-
+class AuthenticationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-
-
-
-        body: _pages[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-
-          backgroundColor: Colors.black87,
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              backgroundColor: Colors.white,
-              icon: SvgPicture.asset('assets/svg/Vectorhome-icon.svg',),
-              activeIcon: SvgPicture.asset(
-                'assets/svg/Vectorhome-icon.svg', // Replace with the path to your selected icon
-                  color: Color(0xFFF36523), // Customize the color for the selected state
-              ),
-              label: 'Home',
-
-            ),
-
-            BottomNavigationBarItem(
-             backgroundColor: Colors.white,
-              icon: SvgPicture.asset('assets/svg/search-normalsearch-icon.svg',),
-              activeIcon: SvgPicture.asset(
-                'assets/svg/search-normalsearch-icon.svg', // Replace with the path to your selected icon
-                color: Color(0xFFF36523), // Customize the color for the selected state
-              ),
-              label: 'Search',
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: Colors.white,
-              icon: SvgPicture.asset('assets/svg/reserve-icon.svg',),
-              activeIcon: SvgPicture.asset(
-                'assets/svg/reserve-icon.svg', // Replace with the path to your selected icon
-                color: Color(0xFFF36523), // Customize the color for the selected state
-              ),
-
-              label: 'Reserves',
-
-
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: Colors.white,
-              icon: SvgPicture.asset('assets/svg/profile.svg',),
-              activeIcon: SvgPicture.asset(
-                'assets/svg/profile.svg', // Replace with the path to your selected icon
-                color: Color(0xFFF36523), // Customize the color for the selected state
-              ),
-              label: 'Account',
-            ),
-          ],
-          selectedItemColor: Color(0xFFF36523), // Set the color for the selected item's label
-          unselectedItemColor: Color(0xFFA9A9A9),
-          selectedLabelStyle: GoogleFonts.poppins(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            // color: Colors.blue, // Change the color of the selected label text
-          ),
-          unselectedLabelStyle: GoogleFonts.poppins(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            // color: Colors.black, // Change the color of the unselected label text
-          ),
-
-
-        ),
-
-
-
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(); // Show loading indicator while checking authentication state
+        }
+        if (snapshot.hasData) {
+          // User is signed in
+          return bottom_nav();
+        } else {
+          // User is not signed in
+          return LoginPage();
+        }
+      },
     );
-
   }
 }
+

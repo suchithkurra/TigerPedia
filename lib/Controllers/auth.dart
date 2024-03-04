@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tigerapp/main.dart';
 import 'package:tigerapp/screens/home_screen.dart';
-import '../Controllers/data.dart';
+import 'data.dart';
+import 'package:tigerapp/screens/bottom_nav.dart';
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -35,7 +37,7 @@ class AuthMethods {
           };
 
           await Data().addUser(userDetails.uid, userinfoMap);
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homepage()));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => bottom_nav()));
         }
       }
     } catch (error) {
