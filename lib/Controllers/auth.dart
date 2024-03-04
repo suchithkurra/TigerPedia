@@ -5,6 +5,7 @@ import 'package:tigerapp/main.dart';
 import 'package:tigerapp/screens/home_screen.dart';
 import 'data.dart';
 import 'package:tigerapp/screens/bottom_nav.dart';
+import 'package:tigerapp/Models/profile_class.dart';
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -37,7 +38,7 @@ class AuthMethods {
           };
 
           await Data().addUser(userDetails.uid, userinfoMap);
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => bottom_nav()));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => bottom_nav(user: userDetails)));
         }
       }
     } catch (error) {
