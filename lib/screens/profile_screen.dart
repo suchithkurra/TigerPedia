@@ -95,23 +95,23 @@ class profilepage extends StatelessWidget{
                      ),
                   ),
                 ),
-                Expanded(
-                  child: Column(
-                  
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                  
-                      Padding(
-                  
-                        padding: const EdgeInsets.all(12.0),
-                        child: Text('Personal Details', style: GoogleFonts.dmSans().copyWith(
-                          fontSize: 14
-                        ),),
-                      ),
-                  
-                      Expanded(child: Container(
-                        height: personalheight,
+                Column(
+
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    Padding(
+
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text('Personal Details', style: GoogleFonts.dmSans().copyWith(
+                        fontSize: 14
+                      ),),
+                    ),
+
+                    Flexible(
+                      child: Container(
+                       // height: personalheight,
                         width: personalwidth,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
@@ -199,19 +199,21 @@ class profilepage extends StatelessWidget{
                               },
                           trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
                             ),
-                  
+                      
                           ],
                         ),
-                  
-                      ),),
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Text('More', style: GoogleFonts.dmSans().copyWith(
-                            fontSize: 14
-                        ),),
+                      
                       ),
-                      Container(
-                        height: moreheight,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text('More', style: GoogleFonts.dmSans().copyWith(
+                          fontSize: 14
+                      ),),
+                    ),
+                    Flexible(
+                      child: Container(
+                        // height: moreheight,
                         width: morewidth,
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -229,7 +231,7 @@ class profilepage extends StatelessWidget{
                           physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             children: [
-                  
+                      
                             ListTile(
                               leading: const Icon(Icons.signal_cellular_connected_no_internet_4_bar
                               ),
@@ -252,16 +254,16 @@ class profilepage extends StatelessWidget{
                                 },
                                 trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
                               ),
-                  
-                  
+                      
+                      
                           ]
                         )
-                  
+                      
                             ),
-                      const SizedBox(height: 20,)
-                          ],
-                        ),
-                )
+                    ),
+                    const SizedBox(height: 20,)
+                        ],
+                      )
                     ],
                   ),
                 )
