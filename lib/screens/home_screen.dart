@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tigerapp/screens/login_screen.dart';
-import 'package:tigerapp/screens/profile_screens/profile_screen.dart';
-import 'package:tigerapp/screens/reserve_info.dart';
-import 'package:tigerapp/screens/search_page.dart';
 import 'package:http/http.dart' as http; // Import the http package
 import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:tigerapp/Models/tiger_info.dart';
-import 'package:tigerapp/Utils/urls.dart';
 import 'dart:ui';
 import 'package:blur/blur.dart';
 
@@ -19,7 +14,7 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
-  late Future<List<Tiger_info>> _futureTigerInfoList;
+  late Future<List<tiger_information>> _futureTigerInfoList;
 
   @override
   void initState() {
@@ -27,13 +22,13 @@ class _homepageState extends State<homepage> {
     _futureTigerInfoList = fetchTigerInfoList(); // Call your function to fetch tiger info list
   }
 
-  Future<List<Tiger_info>> fetchTigerInfoList() async {
-    final response = await http.get(Uri.parse('http://api.tigerpedia.in:8003/get_all_carousal_items/')); // Replace 'your_endpoint_url' with your actual endpoint URL
+  Future<List<tiger_information>> fetchTigerInfoList() async {
+    final response = await http.get(Uri.parse('http://api.tigerpedia.in:8000/get_carousel_slider_data_mysql/')); // Replace 'your_endpoint_url' with your actual endpoint URL
 
     if (response.statusCode == 200) {
       // If the server returns a 200 OK response, parse the JSON
       List<dynamic> jsonData = json.decode(response.body);
-      List<Tiger_info> tigerInfoList = jsonData.map((json) => Tiger_info.fromJson(json)).toList();
+      List<tiger_information> tigerInfoList = jsonData.map((json) => tiger_information.fromJson(json)).toList();
       return tigerInfoList;
     } else {
       // If the server did not return a 200 OK response, throw an exception
@@ -85,7 +80,7 @@ class _homepageState extends State<homepage> {
                     top: 100, // Adjust this value to position the carousel as desired
                     left: 0,
                     right: 0,
-                    child: FutureBuilder<List<Tiger_info>>(
+                    child: FutureBuilder<List<tiger_information>>(
                         future: _futureTigerInfoList,
                         builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -93,7 +88,7 @@ class _homepageState extends State<homepage> {
                             } else if (snapshot.hasError) {
                           return Center(child: Text('Error: ${snapshot.error}'));
                           } else {
-                          List<Tiger_info>? tigerInfoList = snapshot.data;
+                          List<tiger_information>? tigerInfoList = snapshot.data;
                           if (tigerInfoList != null && tigerInfoList.isNotEmpty) {
                           return Container(
                           height: 1000, // Adjust this height as needed
@@ -117,7 +112,7 @@ class _homepageState extends State<homepage> {
 
 
 class HorizontalCarousel extends StatefulWidget {
-  final List<Tiger_info> tigerInfoList;
+  final List<tiger_information> tigerInfoList;
 
   HorizontalCarousel({required this.tigerInfoList});
 

@@ -1,4 +1,4 @@
-class Tiger_info {
+class tiger_information {
   final int serialNumber;
   final String name;
   final String alternativeName;
@@ -13,7 +13,7 @@ class Tiger_info {
   final String details;
   final String imageLink;
 
-  Tiger_info({
+  tiger_information({
     required this.serialNumber,
     required this.name,
     required this.alternativeName,
@@ -29,8 +29,8 @@ class Tiger_info {
     required this.imageLink,
   });
 
-  factory Tiger_info.fromJson(Map<String, dynamic> json) {
-    return Tiger_info(
+  factory tiger_information.fromJson(Map<String, dynamic> json) {
+    return tiger_information(
       serialNumber: json['S_No'] ?? 0,
       name: json['Name'] ?? 'NA',
       alternativeName: json['Alternative_Name'] ?? 'NA',

@@ -27,21 +27,15 @@ class TigerReserve {
   factory TigerReserve.fromJson(Map<String, dynamic> json) {
     return TigerReserve(
       slNo: json['SlNo'] as int? ?? 0,
-      // Handle null for integer fields as well
       tigerReserve: json['TigerReserve'] as String? ?? '',
-      // Default to empty string if null
-      tigerCount2023: json['TigerCount_2023'] as int,
+      tigerCount2023: json['TigerCount_2023'] as int? ?? 0,
       ecotourismResorts: json['EcotourismResorts'] as String? ?? '',
-      // Default to empty string if null
       paNotificationYear: json['PANotificationYear'] as String?,
-      // No default value for nullable fields
       state: json['State'] as String? ?? '',
-      // Default to empty string if null
       TRNotificationYear: json['TRNotificationYear'] as int? ?? 0,
-      // Handle null for integer fields as well
-      coreAreaSqkm: json['CoreArea_sqkm'] as double,
-      bufferAreaSqkm: json['BufferArea_sqkm'] as double,
-      totalAreaSqkm: json['TotalArea_sqkm'] as double,
+      coreAreaSqkm: json['CoreArea_sqkm'] as double? ?? 0.0,
+      bufferAreaSqkm: json['BufferArea_sqkm'] as double? ?? 0.0,
+      totalAreaSqkm: json['TotalArea_sqkm'] as double? ?? 0.0,
     );
   }
 }
