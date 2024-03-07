@@ -5,10 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tigerapp/Controllers/auth.dart';
+import 'package:tigerapp/Controllers/share_controller.dart';
+import 'package:tigerapp/Controllers/url_launcher.dart';
+import 'package:tigerapp/Utils/Routes.dart';
+import 'package:tigerapp/screens/about_us.dart';
+import 'package:tigerapp/screens/account_privacy.dart';
+
+import 'help_support.dart';
+
+
 
 
 class profilepage extends StatelessWidget{
   final User user;
+
 
   profilepage({required this.user});
 
@@ -109,101 +120,108 @@ class profilepage extends StatelessWidget{
                       ),),
                     ),
 
-                    Flexible(
-                      child: Container(
-                       // height: personalheight,
-                        width: personalwidth,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 7,
-                                spreadRadius: 7,
-                                offset: const Offset(0,3),
-                                  color: Colors.grey.withOpacity(0.3)
-                              )
-                            ]
-                        ),
-                        child: ListView(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [
-                            ListTile(
-                              leading: SvgPicture.asset('assets/svg/account_privacy.svg'),
-                              title: Text('Account Privacy', style: GoogleFonts.poppins().copyWith(
-                                fontSize: 12
-                              ),),
-                              trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
-                              onTap: () {
-                                print('Button 1 tapped');
-                              }
-                            ),
-                            ListTile(
-                              leading: SvgPicture.asset('assets/svg/feedback.svg'),
-                              title: Text('Send Us your Feedback', style: GoogleFonts.poppins().copyWith(
-                                fontSize: 12
-                              ),),
-                                onTap: () {print('Button 1 tapped');},
-                              trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
-                            ),
-                            ListTile(
-                              leading: SvgPicture.asset('assets/svg/share.svg'),
-                              title: Text('Share with your Friends', style: GoogleFonts.poppins().copyWith(
-                                fontSize: 12
-                              ),),
-                                onTap: () {
-                                  print('Button 1 tapped');
-                                },
-                              trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
-                            ),
-                        ListTile(
-                          leading: SvgPicture.asset('assets/svg/website.svg'),
-                          title: Text('Our Website', style: GoogleFonts.poppins().copyWith(
-                                    fontSize: 12
-                                ),),
-                            onTap: () {
-                              print('Button 1 tapped');
-                            },
-                          trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
-                            ),
-                        ListTile(
-                          leading: SvgPicture.asset('assets/svg/notifications.svg'),
-                          title: Text('Team', style: GoogleFonts.poppins().copyWith(
-                                  fontSize: 12
-                              ),),
-                            onTap: () {
-                              print('Button 1 tapped');
-                            },
-                          trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
-                            ),
-                        ListTile(
-                          leading: const Icon(Icons.signal_cellular_connected_no_internet_4_bar
-                          ),
-                          title: Text('Sign Out', style: GoogleFonts.poppins().copyWith(
-                                  fontSize: 12
-                              ),),
-                            onTap: () {
-                              print('Button 1 tapped');
-                            },
-                          trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
-                            ),
-                        ListTile(
-                          leading: const Icon(Icons.manage_accounts_outlined
-                              ),
-                          title: Text('Developers', style: GoogleFonts.poppins().copyWith(
-                                  fontSize: 12
-                              ),),
-                              onTap: () {
-                                print('Button 1 tapped');
-                              },
-                          trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
-                            ),
-                      
-                          ],
-                        ),
-                      
+                    Container(
+                     // height: personalheight,
+                      width: personalwidth,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 7,
+                              spreadRadius: 7,
+                              offset: const Offset(0,3),
+                                color: Colors.grey.withOpacity(0.3)
+                            )
+                          ]
                       ),
+                      child: ListView(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                          ListTile(
+                            leading: SvgPicture.asset('assets/svg/account_privacy.svg'),
+                            title: Text('Account Privacy', style: GoogleFonts.poppins().copyWith(
+                              fontSize: 12
+                            ),),
+                            trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => AccountPrivacyPage()),
+                              );
+                            },
+
+                          ),
+                          ListTile(
+                            leading: SvgPicture.asset('assets/svg/feedback.svg'),
+                            title: Text('Send Us your Feedback', style: GoogleFonts.poppins().copyWith(
+                              fontSize: 12
+                            ),),
+                              onTap: () {print('Button 1 tapped');},
+                            trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
+                          ),
+                          ListTile(
+                            leading: SvgPicture.asset('assets/svg/share.svg'),
+                            title: Text('Share with your Friends', style: GoogleFonts.poppins().copyWith(
+                              fontSize: 12
+                            ),),
+                              onTap: () {
+                                ShareHelper.shareWithFriends(context);
+                              },
+                            trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
+                          ),
+                      ListTile(
+                        leading: SvgPicture.asset('assets/svg/website.svg'),
+                        title: Text('Our Website', style: GoogleFonts.poppins().copyWith(
+                                  fontSize: 12
+                              ),),
+                        onTap: () {
+                          const String url = 'https://tigerpedia.in/'; // Note: No scheme (http:// or https://) here
+                          launchURL(url).catchError((error) {
+                            print('Error launching URL: $error');
+                            // Handle the error here
+                          });
+                        },
+                        trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
+                          ),
+                      ListTile(
+                        leading: SvgPicture.asset('assets/svg/notifications.svg'),
+                        title: Text('Team', style: GoogleFonts.poppins().copyWith(
+                                fontSize: 12
+                            ),),
+                          onTap: () {
+                            print('Button 1 tapped');
+                          },
+                        trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
+                          ),
+                      ListTile(
+                        leading: const Icon(Icons.ac_unit_sharp
+                        ),
+                        title: Text('Sign Out', style: GoogleFonts.poppins().copyWith(
+                                fontSize: 12
+                            ),),
+                          onTap: () {
+                            AuthMethods authMethods = AuthMethods();
+                            authMethods.signOut(context);
+                          },
+                        trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
+                          ),
+                      ListTile(
+                        leading: const Icon(Icons.manage_accounts_outlined
+                            ),
+                        title: Text('Developers', style: GoogleFonts.poppins().copyWith(
+                                fontSize: 12
+                            ),),
+                            onTap: () {
+                              print('Button 1 tapped');
+                            },
+                        trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
+                          ),
+
+                        ],
+                      ),
+
                     ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -211,56 +229,60 @@ class profilepage extends StatelessWidget{
                           fontSize: 14
                       ),),
                     ),
-                    Flexible(
-                      child: Container(
-                        // height: moreheight,
-                        width: morewidth,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              spreadRadius: 7,
-                              blurRadius: 7,
-                              color: Colors.grey.withOpacity(0.3),
-                              offset: const Offset(0,3)
-                            )
-                          ]
-                        ),
-                        child: ListView(
-                          physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            children: [
-                      
+                    Container(
+                      // height: moreheight,
+                      width: morewidth,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [
+                          BoxShadow(
+                            spreadRadius: 7,
+                            blurRadius: 7,
+                            color: Colors.grey.withOpacity(0.3),
+                            offset: const Offset(0,3)
+                          )
+                        ]
+                      ),
+                      child: ListView(
+                        physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          children: [
+
+                          ListTile(
+                            leading: const Icon(Icons.info
+                            ),
+                            title: Text('About Us', style: GoogleFonts.poppins().copyWith(
+                                fontSize: 12
+                            ),),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => AboutUsPage()),
+                              );
+                            },
+                            trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
+                          ),
                             ListTile(
-                              leading: const Icon(Icons.signal_cellular_connected_no_internet_4_bar
+                              leading: const Icon(Icons.help_center
                               ),
-                              title: Text('About Us', style: GoogleFonts.poppins().copyWith(
+                              title: Text('Help & Support', style: GoogleFonts.poppins().copyWith(
                                   fontSize: 12
                               ),),
                               onTap: () {
-                                print('Button 1 tapped');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => HelpAndSupportPage()),
+                                );
                               },
                               trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
                             ),
-                              ListTile(
-                                leading: const Icon(Icons.help_center
-                                ),
-                                title: Text('Help & Support', style: GoogleFonts.poppins().copyWith(
-                                    fontSize: 12
-                                ),),
-                                onTap: () {
-                                  print('Button 1 tapped');
-                                },
-                                trailing: SvgPicture.asset('assets/svg/right_arrow.svg'),
-                              ),
-                      
-                      
-                          ]
-                        )
-                      
-                            ),
-                    ),
+
+
+                        ]
+                      )
+
+                          ),
                     const SizedBox(height: 20,)
                         ],
                       )
