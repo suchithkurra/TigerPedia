@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tigerapp/screens/login_screen.dart';
-import 'package:tigerapp/screens/profile_screen.dart';
+import 'package:tigerapp/screens/profile_screens/profile_screen.dart';
 import 'package:tigerapp/screens/reserve_info.dart';
 import 'package:tigerapp/screens/search_page.dart';
 import 'package:http/http.dart' as http; // Import the http package

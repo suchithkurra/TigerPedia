@@ -9,8 +9,8 @@ import 'package:tigerapp/Controllers/auth.dart';
 import 'package:tigerapp/Controllers/share_controller.dart';
 import 'package:tigerapp/Controllers/url_launcher.dart';
 import 'package:tigerapp/Utils/Routes.dart';
-import 'package:tigerapp/screens/about_us.dart';
-import 'package:tigerapp/screens/account_privacy.dart';
+import 'package:tigerapp/screens/profile_screens/about_us.dart';
+import 'package:tigerapp/screens/profile_screens/account_privacy.dart';
 
 import 'help_support.dart';
 

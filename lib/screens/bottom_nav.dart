@@ -5,7 +5,7 @@ import 'package:tigerapp/screens/home_screen.dart';
 import 'package:tigerapp/screens/login_screen.dart';
 import 'package:tigerapp/screens/search_page.dart';
 import 'package:tigerapp/screens/reserve_info.dart';
-import 'package:tigerapp/screens/profile_screen.dart';
+import 'package:tigerapp/screens/profile_screens/profile_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tigerapp/screens/tiger_info_screen.dart';
 import 'package:tigerapp/Models/tiger_info.dart';
