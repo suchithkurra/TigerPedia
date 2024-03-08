@@ -18,7 +18,7 @@ class _ReserveSearchPageState extends State<ReserveSearchPage> {
   TextEditingController _searchController = TextEditingController();
   late Future<List<TigerReserve>> _filteredReserves;
   String _selectedFilter = ''; // Define _selectedFilter
-  List<String> _filterOptions = [
+  final List<String> _filterOptions = [
     'Karnataka',
     'Uttarakhand',
     'Uttar Pradesh',
@@ -70,13 +70,14 @@ class _ReserveSearchPageState extends State<ReserveSearchPage> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
 
                   height: MediaQuery.sizeOf(context).height * 0.07,
-                  width: MediaQuery.sizeOf(context).width * 0.7,
+                  width: MediaQuery.sizeOf(context).width * 0.8,
                   decoration: BoxDecoration(
                     color: Colors.white, // Adjust color as needed
                     borderRadius: BorderRadius.circular(12.0),),
@@ -84,8 +85,13 @@ class _ReserveSearchPageState extends State<ReserveSearchPage> {
                   child: TextField(
                     controller: _searchController,
                     decoration: InputDecoration(
-                        hintText: 'Search',
-                        prefixIcon: Icon(Icons.search),
+                        hintText: 'Search',hintStyle: GoogleFonts.poppins(),
+
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.only(top:5),
+                          child: Icon(Icons.search),
+                        ),
+
                         border: InputBorder.none
                     ),
                     onChanged: (query) {
@@ -95,12 +101,31 @@ class _ReserveSearchPageState extends State<ReserveSearchPage> {
                     },
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.filter_list),
-                  onPressed: () {
+                SizedBox(width: MediaQuery.sizeOf(context).width * 0.02,),
+
+
+                GestureDetector(
+                  onTap: () {
                     _showFilterBottomSheet(context);
                   },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)
+                    ),
+                    height: MediaQuery.sizeOf(context).height * 0.07,
+                    width: MediaQuery.sizeOf(context).width * 0.1,
+
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset('assets/svg/filter_icon.svg'),
+                    ),
+                  ),
                 ),
+
+
+
+
               ],
             ),
 

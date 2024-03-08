@@ -14,6 +14,13 @@ class _SearchPageState extends State<SearchPage> {
   late Future<List<tiger_information>> _futureTigers;
   TextEditingController _searchController = TextEditingController();
   late Future<List<tiger_information>> _filteredTigers;
+  String _selectedFilter = ''; // Define _selectedFilter
+  List<String> _filterOptions = [
+    'Tadoba Andhari Tiger Reserve',
+    'Reserve 2',
+    'Reserve 3',
+    // Add more reserve options as needed
+  ];
 
   @override
   void initState() {
@@ -40,31 +47,67 @@ class _SearchPageState extends State<SearchPage> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-
-            child: Container(
-              height: MediaQuery.sizeOf(context).height * 0.07,
-              decoration: BoxDecoration(
-                color: Colors.white, // Adjust color as needed
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: TextField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                  border: InputBorder.none
+            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+            child: Row(
+                children: [
 
 
-                ),
+             Container(
+            height: MediaQuery.sizeOf(context).height * 0.07,
+      width: MediaQuery.sizeOf(context).width * 0.8,
+      decoration: BoxDecoration(
+        color: Colors.white, // Adjust color as needed
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+             // Provide a specific width
+               child: TextField(
+                 controller: _searchController,
+                 decoration: InputDecoration(
+                     hintText: 'Search',hintStyle: GoogleFonts.poppins(),
+
+                     prefixIcon: Padding(
+                       padding: const EdgeInsets.only(top:5),
+                       child: Icon(Icons.search),
+                     ),
+
+                     border: InputBorder.none
+                 ),
+
+
+
                 onChanged: (query) {
-                  setState(() {
-                    _filteredTigers = _filterTigers(query);
-                  });
-                },
+                      setState(() {
+                        _filteredTigers = _filterTigers(query);
+                      });
+                    },
+                  ),
+                ),
+
+                  SizedBox(width: MediaQuery.sizeOf(context).width * 0.02),
+                  GestureDetector(
+                    onTap: () {
+                      _showFilterBottomSheet(context);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8)
+                      ),
+                      height: MediaQuery.sizeOf(context).height * 0.07,
+                      width: MediaQuery.sizeOf(context).width * 0.1,
+
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SvgPicture.asset('assets/svg/filter_icon.svg'),
+                      ),
+                    ),
+                  ),
+
+                ],
               ),
             ),
-          ),
+
+
           Expanded(
             child: FutureBuilder<List<tiger_information>>(
               future: _filteredTigers,
@@ -161,6 +204,57 @@ class _SearchPageState extends State<SearchPage> {
 
   Future<List<tiger_information>> _filterTigers(String query) async {
     final tigers = await _futureTigers;
-    return tigers.where((tiger) => tiger.name.toLowerCase().contains(query.toLowerCase())).toList();
+    if (_selectedFilter.isNotEmpty) {
+      return tigers.where((tiger) =>
+      tiger.name.toLowerCase().contains(query.toLowerCase()) &&
+          tiger.tigerReserve.toLowerCase() == _selectedFilter.toLowerCase()).toList();
+    } else {
+      return tigers.where((tiger) =>
+          tiger.name.toLowerCase().contains(query.toLowerCase())).toList();
+    }
   }
+
+  void _showFilterBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height / 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Filter by Reserve',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _filterOptions.length,
+                  itemBuilder: (context, index) {
+                    final option = _filterOptions[index];
+                    return ListTile(
+                      title: Text(option),
+                      onTap: () {
+                        print('Filter selected: $option'); // Debugging print
+                        setState(() {
+                          _selectedFilter = option;
+                          _filteredTigers = _filterTigers(_searchController.text);
+                        });
+                        print('Filtered Tigers: $_filteredTigers'); // Debugging print
+                        Navigator.pop(context); // Close the bottom sheet
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
 }
