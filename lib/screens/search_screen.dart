@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tigerapp/Models/tiger_info.dart';
 import 'package:tigerapp/controllers/tiger_info_controller.dart';
 import 'package:tigerapp/screens/tiger_info_screen.dart';
@@ -27,7 +29,7 @@ class _SearchPageState extends State<SearchPage> {
         centerTitle: true,
         title: Text(
           'TIGERS OF INDIA',
-          style: TextStyle(
+          style: GoogleFonts.muktaMalar(
             fontSize: 36,
             fontWeight: FontWeight.bold,
           ),
@@ -38,21 +40,29 @@ class _SearchPageState extends State<SearchPage> {
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+
+            child: Container(
+              height: MediaQuery.sizeOf(context).height * 0.07,
+              decoration: BoxDecoration(
+                color: Colors.white, // Adjust color as needed
+                borderRadius: BorderRadius.circular(12.0),
               ),
-              onChanged: (query) {
-                setState(() {
-                  _filteredTigers = _filterTigers(query);
-                });
-              },
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  prefixIcon: Icon(Icons.search),
+                  border: InputBorder.none
+
+
+                ),
+                onChanged: (query) {
+                  setState(() {
+                    _filteredTigers = _filterTigers(query);
+                  });
+                },
+              ),
             ),
           ),
           Expanded(
@@ -79,30 +89,59 @@ class _SearchPageState extends State<SearchPage> {
                           );
                         },
                         child: Container(
-                          padding: EdgeInsets.all(8.0),
-                          margin: EdgeInsets.all(8.0),
+                          // padding: EdgeInsets.all(8.0),
+                          margin: EdgeInsets.all(16.0),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            // crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
                                 width: 100,
                                 height: 100,
-                                child: Image.network(
-                                  tiger.imageLink,
-                                  fit: BoxFit.cover,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10.0), // Adjust border radius if needed
+                                    bottomLeft: Radius.circular(10.0),
+                                  ),
+                                  child: Image.network(
+                                    tiger.imageLink,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                              SizedBox(width: 8.0),
+                              SizedBox(width: MediaQuery.sizeOf(context).width * 0.03),
                               Expanded(
-                                child: Text(
-                                  tiger.name,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                child: Column(
+                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      tiger.name,
+                                      style: GoogleFonts.montserrat().copyWith(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Padding(padding: EdgeInsets.symmetric(vertical: 1),
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset('assets/svg/location_vector.svg'),
+                                            SizedBox(width: MediaQuery.sizeOf(context).width * 0.01,),
+                                            Text(
+                                              tiger.tigerReserve,
+                                              style: GoogleFonts.montserrat().copyWith(
+                                                fontSize: 12,
+                                            
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ],

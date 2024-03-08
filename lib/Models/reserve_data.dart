@@ -9,6 +9,10 @@ class TigerReserve {
   final double coreAreaSqkm;
   final double bufferAreaSqkm;
   final double totalAreaSqkm;
+  final String reserve_website;
+  final String reserve_image;
+  final String ecotourism_link;
+  final String filterProperty;
 
   TigerReserve({
     required this.slNo,
@@ -21,6 +25,10 @@ class TigerReserve {
     required this.coreAreaSqkm,
     required this.bufferAreaSqkm,
     required this.totalAreaSqkm,
+    required  this.reserve_website,
+    required this.reserve_image,
+    required this.ecotourism_link,
+    required this.filterProperty,
   });
 
 
@@ -36,6 +44,10 @@ class TigerReserve {
       coreAreaSqkm: json['CoreArea_sqkm'] as double? ?? 0.0,
       bufferAreaSqkm: json['BufferArea_sqkm'] as double? ?? 0.0,
       totalAreaSqkm: json['TotalArea_sqkm'] as double? ?? 0.0,
+      reserve_website: json['website_link'] as String? ?? '',
+      reserve_image: json['image_link'] as String? ?? '',
+      ecotourism_link: json['ecotourismlink'] as String? ?? '',
+      filterProperty: json['FilterProperty'] as String? ?? '',
     );
   }
 }
