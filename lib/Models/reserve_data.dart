@@ -13,6 +13,8 @@ class TigerReserve {
   final String reserve_image;
   final String ecotourism_link;
   final String filterProperty;
+  final String reserve_image2;
+  final String reserve_image3;
 
   TigerReserve({
     required this.slNo,
@@ -29,6 +31,8 @@ class TigerReserve {
     required this.reserve_image,
     required this.ecotourism_link,
     required this.filterProperty,
+    required this.reserve_image2,
+    required this.reserve_image3,
   });
 
 
@@ -48,6 +52,8 @@ class TigerReserve {
       reserve_image: json['image_link'] as String? ?? '',
       ecotourism_link: json['ecotourismlink'] as String? ?? '',
       filterProperty: json['FilterProperty'] as String? ?? '',
+      reserve_image2: json['image_link2'] as String? ?? '',
+      reserve_image3: json['image_link3'] as String? ?? '',
     );
   }
 }

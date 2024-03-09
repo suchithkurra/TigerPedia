@@ -14,7 +14,7 @@ class _SearchPageState extends State<SearchPage> {
   late Future<List<tiger_information>> _futureTigers;
   TextEditingController _searchController = TextEditingController();
   late Future<List<tiger_information>> _filteredTigers;
-  String _selectedFilter = ''; // Define _selectedFilter
+  List<String> _selectedFilters = []; // Define _selectedFilter
   List<String> _filterOptions = [
     'Tadoba Andhari Tiger Reserve',
     'Reserve 2',
@@ -204,10 +204,10 @@ class _SearchPageState extends State<SearchPage> {
 
   Future<List<tiger_information>> _filterTigers(String query) async {
     final tigers = await _futureTigers;
-    if (_selectedFilter.isNotEmpty) {
+    if (_selectedFilters.isNotEmpty) {
       return tigers.where((tiger) =>
       tiger.name.toLowerCase().contains(query.toLowerCase()) &&
-          tiger.tigerReserve.toLowerCase() == _selectedFilter.toLowerCase()).toList();
+          _selectedFilters.contains(tiger.tigerReserve.toLowerCase())).toList();
     } else {
       return tigers.where((tiger) =>
           tiger.name.toLowerCase().contains(query.toLowerCase())).toList();
@@ -240,12 +240,19 @@ class _SearchPageState extends State<SearchPage> {
                       onTap: () {
                         print('Filter selected: $option'); // Debugging print
                         setState(() {
-                          _selectedFilter = option;
+                          if (_selectedFilters.contains(option.toLowerCase())) {
+                            _selectedFilters.remove(option.toLowerCase());
+                          } else {
+                            _selectedFilters.add(option.toLowerCase());
+                          }
                           _filteredTigers = _filterTigers(_searchController.text);
                         });
                         print('Filtered Tigers: $_filteredTigers'); // Debugging print
                         Navigator.pop(context); // Close the bottom sheet
                       },
+                      leading: _selectedFilters.contains(option.toLowerCase())
+                          ? Icon(Icons.check_box)
+                          : Icon(Icons.check_box_outline_blank),
                     );
                   },
                 ),

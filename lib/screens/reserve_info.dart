@@ -2,48 +2,130 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tigerapp/Models/reserve_data.dart';
 
-class ReserveDetailScreen extends StatelessWidget {
+class ReserveDetailScreen extends StatefulWidget {
   final TigerReserve reserve;
 
   ReserveDetailScreen({required this.reserve});
 
   @override
+  _ReserveDetailScreenState createState() => _ReserveDetailScreenState();
+}
+
+class _ReserveDetailScreenState extends State<ReserveDetailScreen> {
+  late PageController _pageController;
+  int _currentPageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
-        title: Text('Reserve Details'),
-        backgroundColor: Color(0xFFFFF8F4),
-      ),
-      body: Container(
-        color: Color(0xFFFFF8F4),
-        child: SingleChildScrollView(
-
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Reserve Name: ${reserve.tigerReserve}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              Text('State: ${reserve.state}', style: TextStyle(fontSize: 20),),
-              Text('Tiger Count (2023): ${reserve.tigerCount2023}', style: TextStyle(fontSize: 20),),
-              Text('Ecotourism Resorts: ${reserve.ecotourismResorts}', style: TextStyle(fontSize: 20),),
-              Text('PA Notification Year: ${reserve.paNotificationYear ?? "N/A"}', style: TextStyle(fontSize: 20),),
-              Text('TR Notification Year: ${reserve.TRNotificationYear}', style: TextStyle(fontSize: 20),),
-              Text('Core Area (sqkm): ${reserve.coreAreaSqkm}', style: TextStyle(fontSize: 20),),
-              Text('Buffer Area (sqkm): ${reserve.bufferAreaSqkm}', style: TextStyle(fontSize: 20),),
-              Text('Total Area (sqkm): ${reserve.totalAreaSqkm}', style: TextStyle(fontSize: 20),),
-              Text('reserve website: ${reserve.reserve_website}', style: TextStyle(fontSize: 20),),
-              Text('resrve image: ${reserve.reserve_image}', style: TextStyle(fontSize: 20),),
-              Text('ecotourism): ${reserve.ecotourism_link}', style: TextStyle(fontSize: 20),),
-
-            ],
+        title: Text(
+          '${widget.reserve.tigerReserve.toUpperCase()}',
+          style: GoogleFonts.montserrat().copyWith(
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
           ),
         ),
+        backgroundColor: Color(0xFFFFF8F4),
+      ),
+      body: Stack(
+        children: [
+          Container(
+            color: Color(0xFFFFF8F4),
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Your reserve details here
+                  Text(
+                    'Reserve Name: ${widget.reserve.tigerReserve}',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 10),
+                  // Display other reserve details...
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 10,
+            child: Center(
+              child: _buildDotsIndicator(),
+            ),
+          ),
+          Positioned(
+            top: 40,
+            left: 17,
+            child: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black87),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+          Positioned.fill(
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPageIndex = index;
+                });
+              },
+              children: [
+                Image.network(
+                  widget.reserve.reserve_image,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                Image.network(
+                  widget.reserve.reserve_image2,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                Image.network(
+                  widget.reserve.reserve_image3,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                // Add more images as needed
+              ],
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  Widget _buildDotsIndicator() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(3, (index) {
+        return Container(
+          width: 10.0,
+          height: 10.0,
+          margin: EdgeInsets.symmetric(horizontal: 2.0),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _currentPageIndex == index ? Colors.blue : Colors.grey,
+          ),
+        );
+      }),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 }

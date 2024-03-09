@@ -165,11 +165,11 @@ class _HorizontalCarouselState extends State<HorizontalCarousel> {
                         decoration: BoxDecoration(
                           color: isCentered ? Colors.amber : Colors.grey,
                         ),
-                        child: Image.network(
-                          tiger.imageLink,
-                          width: double.infinity,
-                          height: double.infinity,
-                          fit: BoxFit.cover,
+                         child: Image.network(
+                         tiger.imageLink,
+                         width: double.infinity,
+                         height: double.infinity,
+                         fit: BoxFit.cover,
                         ),
                       ),
                       Positioned(

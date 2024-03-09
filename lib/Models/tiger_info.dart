@@ -12,6 +12,9 @@ class tiger_information {
   final String siblings;
   final String details;
   final String imageLink;
+  final String imageLink2;
+  final String imageLink3;
+  final String tiger_youtube_id;
 
   tiger_information({
     required this.serialNumber,
@@ -27,6 +30,9 @@ class tiger_information {
     required this.siblings,
     required this.details,
     required this.imageLink,
+    required this.imageLink2,
+    required this.imageLink3,
+    required this.tiger_youtube_id
   });
 
   factory tiger_information.fromJson(Map<String, dynamic> json) {
@@ -44,6 +50,9 @@ class tiger_information {
       siblings: json['Siblings'] ?? 'NA',
       details: json['Details'] ?? 'NA',
       imageLink: json['Image_link'] ?? 'NA',
+      imageLink2: json['imagelink_2'] ?? 'NA',
+      imageLink3: json['imagelink_3'] ?? 'NA',
+      tiger_youtube_id: json['youtube_id'] ?? 'NA',
     );
   }
 }
