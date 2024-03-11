@@ -2,18 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>455093432382-56udmnldmgj51u41ugafd57e720qgeh3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.455093432382-56udmnldmgj51u41ugafd57e720qgeh3</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>455093432382-eveipagq0adt7ep35e9aamv3b7oce5tv.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyD1LOgHfit2slpyIHpkmcvXLuXazyhIuM0</string>
+	<string>AIzaSyA2PjRXPZIv_B-5exE0ZPgW-7yoVPDZmp0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>982615576459</string>
+	<string>455093432382</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.project.tigerapp</string>
 	<key>PROJECT_ID</key>
-	<string>tigers-of-india</string>
+	<string>tigerpedia-1b988</string>
 	<key>STORAGE_BUCKET</key>
-	<string>tigers-of-india.appspot.com</string>
+	<string>tigerpedia-1b988.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:982615576459:ios:528c92e4b608be3d31e98e</string>
+	<string>1:455093432382:ios:d0e4bf9649895a4dd0616f</string>
 </dict>
 </plist>
